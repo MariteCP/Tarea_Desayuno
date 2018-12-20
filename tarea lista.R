@@ -61,17 +61,24 @@ cortar <- function(x){
 calentarSarten <- function(){
   return("sarten caliente")
 }
-#lista de acciones ocupadas
-Cortar("pan")
+# Primer Paso: Cortar y moler palta, cortar naranjas y pan:
 Cortar("palta")
+Moler(Cortar("palta")) 
 Cortar("naranjas")
-Calentar("cafe")
-Calentar("pan cortado")
-Moler("palta cortada")
-Preparar("naranjas cortadas")
-Preparar("harina","huevos")
-Preparar("masa de panqueques","sarten caliente")
-Preparar("pan tostado","palta molida")
-Rellenar("panqueques")
+Cortar("pan")
+
+# Segundo Paso: Calentar cafe, preparar el jugo de naranjas, preparar la masa de los panqueques y tostar el pan:
+Calentar("cafe") 
+Preparar(Cortar("naranjas"))
+Preparar("harina","huevos") 
+Calentar(Cortar("pan"))  
+
+# Tercer Paso: Preparar el pan con palta,calentar el sarten para preparar panqueques y luego rellenarlos:
+Preparar(Moler(Cortar("palta")),Calentar(Cortar("pan"))) 
 CalentarSarten()
-Servir("pan tostado con palta","panqueques rellenos","jugo de naranjas","cafe caliente")
+Preparar(Preparar("harina","huevos"),CalentarSarten ())
+Rellenar(Preparar(Preparar("harina","huevos"),CalentarSarten())) 
+
+# Cuarto Paso: Servir el pan con palta, los panqueques rellenos, el jugo de naranjas y el cafe caliente:
+Servir(Preparar(Calentar(Cortar("pan")),Moler(Cortar("palta"))),Rellenar(Preparar(Preparar("harina","huevos"),CalentarSarten())),Preparar(Cortar("naranjas")),Calentar("cafe"))
+
